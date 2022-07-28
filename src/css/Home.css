@@ -1,0 +1,79 @@
+:root {
+  --main-bg-color: #2d4354;
+  --main-s-color: #d6bd54;
+}
+
+.Home {
+  text-align: center;
+}
+
+.Home-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.Upload {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 50px
+}
+
+.Drop {
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed;
+  text-align: center;
+  line-height: 2em;
+  padding: 200px;
+  color: white;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .Home-logo {
+    animation: Home-logo-spin infinite 20s linear;
+  }
+}
+
+.Home-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Home-link {
+  color: #61dafb;
+}
+
+@keyframes Home-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Description {
+  background-color: #FFFDD0;
+  width: 30%;
+  padding: 10px;
+  border: 2px solid var(--main-s-color);
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  margin: auto;
+  margin-top: -100px;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+h2 {
+  color: white;
+}
