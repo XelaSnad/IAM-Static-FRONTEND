@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import React, { useState } from 'react';
+import React from 'react';
 import Diff from '../components/Diff';
 import UploadFile from '../components/UploadFile';
 import logo from '../assets/Transparent.png';
