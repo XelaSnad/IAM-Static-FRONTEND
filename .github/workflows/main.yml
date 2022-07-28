@@ -31,4 +31,4 @@ jobs:
         env:
           CI: False
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./build/ s3://<bucket-name> --delete
+        run: aws s3 sync ./build/ s3://static-iam-frontend --delete
