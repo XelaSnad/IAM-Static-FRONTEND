@@ -3,6 +3,7 @@
 
 name: s3-depl
 
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -15,7 +16,6 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -28,5 +28,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Build React App
         run: npm install && npm run build
+        env:
+          CI: False
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://<bucket-name> --delete
