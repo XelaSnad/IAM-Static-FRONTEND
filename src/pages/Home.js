@@ -1,6 +1,5 @@
 // import logo from './logo.svg';
 import React from 'react';
-import Diff from '../components/Diff';
 import UploadFile from '../components/UploadFile';
 import logo from '../assets/Transparent.png';
 import "../css/Home.css"
@@ -25,9 +24,6 @@ export default function Home() {
                 <UploadFile class="Left" title="New Policy" />
                 <UploadFile class="Right" title="Current Policy"/>
 
-            </div>
-            <div>
-                <Diff/>
             </div>
         </div>
     );
