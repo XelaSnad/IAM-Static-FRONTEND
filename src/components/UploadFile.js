@@ -1,18 +1,15 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import InputInstructions from '../components/InputInstructions';
-import AWS from 'aws-sdk'
-
+import Fetch from 'fetch';
 
 export default function UploadFile(props) {
     
-    const s3 = new AWS.S3({
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      })
+    let filekey = Math.floor(Math.random() * 1000000000);
+    const filename = filekey.toString();
+    let content = null
 
     const handleOnDrop = (files, rejectedFiles) => {
-        console.log(files)
 
         const zip = require('jszip')();
         
@@ -21,20 +18,22 @@ export default function UploadFile(props) {
         }
 
         zip.generateAsync({type:"blob"}).then(function (blob) { // 1) generate the zip file
-            const filename = files[0].name
-            
-            const params = {
-                Bucket: process.env.S3_BUCKET_FILES,
-                Key: `${filename}.zip`,
-                Body: blob
-            }
 
-            
-            s3.upload(params, function(err, data) {
-                console.log(err, data);
-            });
 
         })
+
+        fetch(`https://2ivhlotb6k.execute-api.us-east-1.amazonaws.com/dev/static-iam-store-simplified/${filename}.zip`, {
+            method: 'PUT',
+            headers:
+        }).then((res) => {
+            if (res.ok) {
+                console.log("HTTP PUT SUCCESS")
+            } else {
+                console.log("HTTP PUT FAIL")
+            }
+        })
+
+   
     
     }
   
