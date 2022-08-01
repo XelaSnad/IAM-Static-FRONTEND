@@ -17,45 +17,84 @@ export default function UploadFile(props) {
     });
     let filekey = Math.floor(Math.random() * 1000000000);
 
-    const handleOnDrop = (files) => {
-        const zip = require('jszip')();
-        for (let i = 0; i < files.length; i++) {
-            zip.file(files[i].name, files[i]);
-        }
+    const handleOnDrop = async (files) => {
+        // console.log(files);
+        // const formData = new FormData();
 
-        let uri =
-            'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/UAT/triggerscriptanalyzer';
-        zip.generateAsync({ type: 'blob' }).then((blob) => {
-            let requestOptions = {
-                method: 'OPTIONS',
-                'Access-Control-Allow-Origin': '*',
-                // 'Access-Control-Allow-Methods':
-                // 'GET, PUT, PATCH, POST, DELETE, OPTIONS',
-                // 'Access-Control-Allow-Headers': 'Authorization, Content-Type',
-                redirect: 'follow',
-            };
-            fetch(uri, requestOptions)
-                .then((e) => {
-                    console.log(e);
-                    return e.json();
-                })
-                .then((e) => {
-                    console.log(e);
-                    // setPolicy(e);
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-
-            // 1) generate the zip file
-            // console.log(blob);
-            // fetch('google.com').then((e) => console.log(e));
-            // fetch ()
+        let content = Array.from(files).map((file) => {
+            let reader = new FileReader();
+            return new Promise((resolve) => {
+                reader.onload = () => resolve(reader.result);
+                reader.readAsText(file);
+            });
         });
+        let res = await Promise.all(content);
+        console.log(res);
+        // console.log(stuff);
+        let stuff = {
+            ting: res,
+        };
+        let requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'multipart/form-data' },
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Headers': '*',
+            // body: JSON.stringify(penis),
+            body: JSON.stringify(stuff),
+        };
+        let uri =
+            'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
+
+        fetch(uri, requestOptions)
+            .then((e) => {
+                console.log(e);
+                return e.json();
+            })
+            .then((e) => {
+                console.log(e);
+                console.log(JSON.stringify(e.body));
+                setPolicy(JSON.stringify(e.body));
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+        // console.log(typeof formData.get('hello.py'));
+        // const zip = require('jszip')();
+        // for (let i = 0; i < files.length; i++) {
+        //     zip.file(files[i].name, files[i]);
+        // }
+
+        // let uri =
+        //     'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
+        // zip.generateAsync({ type: 'blob' }).then((blob) => {
+        //     let requestOptions = {
+        //         method: 'POST',
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Access-Control-Allow-Methods': '*',
+        //         'Access-Control-Allow-Headers': '*',
+        //         // 'Access-Control-Allow-Headers': 'Authorization, Content-Type',
+        //         redirect: 'follow',
+        //     };
+        //     fetch(uri, requestOptions)
+        //         .then((e) => {
+        //             console.log(e);
+        //             return e.json();
+        //         })
+        //         .then((e) => {
+        //             console.log(e);
+        //             console.log(JSON.stringify(e.body));
+        //             setPolicy(JSON.stringify(e.body));
+        //         })
+        //         .catch((e) => {
+        //             console.log(e);
+        //         });
+
+        // });
     };
     return (
         <div className={props.class}>
-            <h1>{policy}</h1>
+            <div>{policy}</div>
             <h2>{props.title}</h2>
             <section className="Drop">
                 <section className="container">
