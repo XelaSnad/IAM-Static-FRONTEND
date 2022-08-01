@@ -1,10 +1,12 @@
 // import logo from './logo.svg';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
 import logo from '../assets/Transparent.png';
 import '../css/Home.css';
+import { CopyBlock, dracula } from 'react-code-blocks';
 
 export default function Home() {
+    const [policy, setPolicy] = useState('');
     return (
         <div className="Home">
             <img src={logo} />
@@ -19,8 +21,25 @@ export default function Home() {
                 </p>
             </div>
             <div className="Upload">
-                <UploadFile class="Left" title="New Policy" />
-                <UploadFile class="Right" title="Current Policy" />
+                <UploadFile
+                    orientation="Left"
+                    title="New Policy"
+                    policy={policy}
+                    setPolicy={setPolicy}
+                />
+                <div
+                    class="ignore-css"
+                    style={{ textAlign: 'left', minWidth: '100%' }}
+                >
+                    <CopyBlock
+                        text={policy ? policy : ''}
+                        // showLineNumbers={showLineNumbers}
+                        theme={dracula}
+                        codeBlock
+                        // style={{ textAlign: 'left' }}
+                    />
+                </div>
+                {/* <UploadFile orientation="Right" title="Current Policy" /> */}
             </div>
         </div>
     );

@@ -6,8 +6,8 @@ import InputInstructions from '../components/InputInstructions';
 // import Fetch from 'fetch';
 import { CopyBlock, dracula } from 'react-code-blocks';
 
-export default function UploadFile(props) {
-    let [policy, setPolicy] = useState('');
+export default function UploadFile({ orientation, title, policy, setPolicy }) {
+    // let [policy, setPolicy] = useState('');
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             'text/python': ['.py'],
@@ -100,17 +100,17 @@ export default function UploadFile(props) {
         // });
     };
     return (
-        <div className={props.class}>
-            <div className="container mx-auto p-4">
-                <CopyBlock
-                    text={policy}
-                    // showLineNumbers={showLineNumbers}
-                    theme={dracula}
-                    codeBlock
-                />
-            </div>
-            <textarea value={policy}></textarea>;<div>{policy}</div>
-            <h2>{props.title}</h2>
+        <div className={orientation}>
+            {/* <div className="container mx-auto p-4"> */}
+            {/* <CopyBlock
+                text={policy ? policy : ''}
+                // showLineNumbers={showLineNumbers}
+                theme={dracula}
+                codeBlock
+            /> */}
+            {/* </div> */}
+            {/* <textarea value={policy}></textarea>;<div>{policy}</div> */}
+            <h2>{title}</h2>
             <section className="Drop">
                 <section className="container">
                     <div {...getRootProps({ className: 'dropzone' })}>
