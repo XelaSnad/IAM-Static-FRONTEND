@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
 import InputInstructions from '../components/InputInstructions';
-import Fetch from 'fetch';
+// import Fetch from 'fetch';
+import { CopyBlock, dracula } from 'react-code-blocks';
 
 export default function UploadFile(props) {
     let [policy, setPolicy] = useState('');
@@ -15,11 +16,15 @@ export default function UploadFile(props) {
             handleOnDrop(e);
         },
     });
-    let filekey = Math.floor(Math.random() * 1000000000);
+    // let filekey = Math.floor(Math.random() * 1000000000);
 
     const handleOnDrop = async (files) => {
-        // console.log(files);
-        // const formData = new FormData();
+        // array.forEach((files) => {
+        //     let reader = new FileReader();
+        //     return new Promise ((resolve)=> {
+        //         reader.onload =() => resolve
+        //     })
+        // });
 
         let content = Array.from(files).map((file) => {
             let reader = new FileReader();
@@ -30,7 +35,7 @@ export default function UploadFile(props) {
         });
         let res = await Promise.all(content);
         console.log(res);
-        // console.log(stuff);
+
         let stuff = {
             ting: res,
         };
@@ -53,8 +58,10 @@ export default function UploadFile(props) {
             })
             .then((e) => {
                 console.log(e);
-                console.log(JSON.stringify(e.body));
-                setPolicy(JSON.stringify(e.body));
+                // console.log(JSON.stringify(e.body));
+                // setPolicy(JSON.stringify(e.body, null, 4));
+                setPolicy(JSON.stringify(JSON.parse(e.body), null, 4));
+                // setPolicy(e.body);
             })
             .catch((e) => {
                 console.log(e);
@@ -94,16 +101,20 @@ export default function UploadFile(props) {
     };
     return (
         <div className={props.class}>
-            <div>{policy}</div>
+            <div className="container mx-auto p-4">
+                <CopyBlock
+                    text={policy}
+                    // showLineNumbers={showLineNumbers}
+                    theme={dracula}
+                    codeBlock
+                />
+            </div>
+            <textarea value={policy}></textarea>;<div>{policy}</div>
             <h2>{props.title}</h2>
             <section className="Drop">
                 <section className="container">
                     <div {...getRootProps({ className: 'dropzone' })}>
                         <input {...getInputProps()} hidden />
-                        {/* <p>
-                        Drag 'n' drop some files here, or click to select files
-                    </p>
-                    <em>(Only *.jpeg and *.png images will be accepted)</em> */}
                         <InputInstructions />
                     </div>
                 </section>
