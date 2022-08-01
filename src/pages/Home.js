@@ -4,6 +4,7 @@ import UploadFile from '../components/UploadFile';
 import logo from '../assets/Transparent.png';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
+import { minWidth } from '@mui/system';
 
 export default function Home() {
     const [policy, setPolicy] = useState('');
@@ -20,16 +21,22 @@ export default function Home() {
                     <br></br>
                 </p>
             </div>
+            {/* <div style={{ display: 'flex' }}> */}
             <div className="Upload">
                 <UploadFile
                     orientation="Left"
-                    title="New Policy"
+                    title="Generate Policy"
                     policy={policy}
                     setPolicy={setPolicy}
                 />
+                {/* </div> */}
                 <div
                     class="ignore-css"
-                    style={{ textAlign: 'left', minWidth: '100%' }}
+                    style={{
+                        textAlign: 'left',
+                        minWidth: '50vw',
+                        paddingTop: '70px',
+                    }}
                 >
                     <CopyBlock
                         text={policy ? policy : ''}
