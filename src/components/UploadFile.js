@@ -6,7 +6,14 @@ import InputInstructions from '../components/InputInstructions';
 // import Fetch from 'fetch';
 import { CopyBlock, dracula } from 'react-code-blocks';
 
-export default function UploadFile({ orientation, title, policy, setPolicy }) {
+export default function UploadFile({
+    input,
+    setInput,
+    orientation,
+    title,
+    policy,
+    setPolicy,
+}) {
     // let [policy, setPolicy] = useState('');
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
@@ -21,13 +28,20 @@ export default function UploadFile({ orientation, title, policy, setPolicy }) {
         let content = Array.from(files).map((file) => {
             let reader = new FileReader();
             return new Promise((resolve) => {
-                reader.onload = () => resolve(reader.result);
+                reader.onload = () => {
+                    resolve(reader.result);
+                    let addOn = {};
+                    addOn[file.name] = reader.result;
+
+                    setInput((e) => ({
+                        ...e,
+                        [file.name]: reader.result,
+                    }));
+                };
                 reader.readAsText(file);
             });
         });
         let res = await Promise.all(content);
-        console.log(res);
-
         let stuff = {
             ting: res,
         };
@@ -58,6 +72,7 @@ export default function UploadFile({ orientation, title, policy, setPolicy }) {
     };
     return (
         <div className={orientation}>
+            {/* {JSON.stringify(input)} */}
             <h2>{title}</h2>
             <section className="Drop">
                 <section className="container">

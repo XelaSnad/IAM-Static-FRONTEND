@@ -1,15 +1,17 @@
 // import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
+import CheckBoxList from '../components/CheckBoxList';
 import logo from '../assets/Transparent.png';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Button from '@mui/material/Button';
+
 // import { minWidth } from '@mui/system';
 
 export default function Home() {
     // const
-    const [input, setInput] = useState([]);
+    const [input, setInput] = useState({});
     const [policy, setPolicy] = useState('');
     const downloadTxtFile = () => {
         const element = document.createElement('a');
@@ -41,6 +43,8 @@ export default function Home() {
                     title="Generate Policy"
                     policy={policy}
                     setPolicy={setPolicy}
+                    input={input}
+                    setInput={setInput}
                 />
                 <div>{/* You can choose  */}</div>
                 <div
@@ -77,6 +81,7 @@ export default function Home() {
                         </Button>
                     )}
                 </div>
+                {/* <CheckBoxList input={input} setInput={setInput} /> */}
             </div>
         </div>
     );
