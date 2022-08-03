@@ -4,10 +4,23 @@ import UploadFile from '../components/UploadFile';
 import logo from '../assets/Transparent.png';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
-import { minWidth } from '@mui/system';
+import Button from '@mui/material/Button';
+// import { minWidth } from '@mui/system';
 
 export default function Home() {
+    // const
+    const [input, setInput] = useState([]);
     const [policy, setPolicy] = useState('');
+    const downloadTxtFile = () => {
+        const element = document.createElement('a');
+        const file = new Blob([policy], {
+            type: 'text/plain',
+        });
+        element.href = URL.createObjectURL(file);
+        element.download = 'policy.txt';
+        document.body.appendChild(element);
+        element.click();
+    };
     return (
         <div className="Home">
             <img src={logo} />
@@ -21,7 +34,7 @@ export default function Home() {
                     <br></br>
                 </p>
             </div>
-            {/* <div style={{ display: 'flex' }}> */}
+
             <div className="Upload">
                 <UploadFile
                     orientation="Left"
@@ -29,24 +42,41 @@ export default function Home() {
                     policy={policy}
                     setPolicy={setPolicy}
                 />
-                {/* </div> */}
+                <div>{/* You can choose  */}</div>
                 <div
                     class="ignore-css"
                     style={{
                         textAlign: 'left',
-                        minWidth: '50vw',
+                        width: '35vw',
                         paddingTop: '70px',
                     }}
                 >
                     <CopyBlock
                         text={policy ? policy : ''}
-                        // showLineNumbers={showLineNumbers}
                         theme={dracula}
                         codeBlock
-                        // style={{ textAlign: 'left' }}
                     />
+                    <br></br>
+                    {policy ? (
+                        <Button
+                            variant="contained"
+                            onClick={downloadTxtFile}
+                            size="large"
+                            style={{ width: '35vw' }}
+                        >
+                            Download Policy
+                        </Button>
+                    ) : (
+                        <Button
+                            variant="contained"
+                            disabled
+                            size="large"
+                            style={{ width: '35vw' }}
+                        >
+                            Download Policy
+                        </Button>
+                    )}
                 </div>
-                {/* <UploadFile orientation="Right" title="Current Policy" /> */}
             </div>
         </div>
     );
