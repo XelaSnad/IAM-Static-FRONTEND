@@ -134,14 +134,38 @@ export default function UploadFile({
                 setChecked={setChecked}
             />
             <br />
-            <Button
+            {checked.length == 0 ? (
+                <Button
+                    variant="contained"
+                    disabled
+                    size="large"
+                    style={{ width: '35vw' }}
+                >
+                    Generate Policy
+                </Button>
+            ) : (
+                <Button
+                    variant="contained"
+                    onClick={generatePolicy}
+                    size="large"
+                    style={{
+                        width: '35vw',
+                        background: '#d6bd54',
+                        color: 'black',
+                    }}
+                >
+                    Generate Policy
+                </Button>
+            )}
+            {/* <Button
                 variant="contained"
                 onClick={generatePolicy}
                 size="large"
                 style={{ width: '35vw', background: '#d6bd54', color: 'black' }}
             >
                 Generate Policy
-            </Button>
+            </Button> */}
+            {/* {checked.length == 0 ? <div>fk you </div> : <div></div>} */}
         </div>
     );
 }
