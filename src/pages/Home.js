@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 
 export default function Home() {
     // const
+    const [checked, setChecked] = React.useState([]);
     const [input, setInput] = useState({});
     const [policy, setPolicy] = useState('');
     const downloadTxtFile = () => {
@@ -37,51 +38,60 @@ export default function Home() {
                 </p>
             </div>
 
-            <div className="Upload">
-                <UploadFile
-                    orientation="Left"
-                    title="Generate Policy"
-                    policy={policy}
-                    setPolicy={setPolicy}
-                    input={input}
-                    setInput={setInput}
-                />
-                <div>{/* You can choose  */}</div>
-                <div
-                    class="ignore-css"
-                    style={{
-                        textAlign: 'left',
-                        width: '35vw',
-                        paddingTop: '70px',
-                    }}
-                >
-                    <CopyBlock
-                        text={policy ? policy : ''}
-                        theme={dracula}
-                        codeBlock
+            <div>
+                {/* {checked} */}
+                <div className="Upload">
+                    <UploadFile
+                        orientation="Left"
+                        title="Generate Policy"
+                        policy={policy}
+                        setPolicy={setPolicy}
+                        input={input}
+                        setInput={setInput}
+                        checked={checked}
+                        setChecked={setChecked}
                     />
-                    <br></br>
-                    {policy ? (
-                        <Button
-                            variant="contained"
-                            onClick={downloadTxtFile}
-                            size="large"
-                            style={{ width: '35vw' }}
-                        >
-                            Download Policy
-                        </Button>
-                    ) : (
-                        <Button
-                            variant="contained"
-                            disabled
-                            size="large"
-                            style={{ width: '35vw' }}
-                        >
-                            Download Policy
-                        </Button>
-                    )}
+                    {/* <div>hello</div> */}
+                    <div
+                        class="ignore-css"
+                        style={{
+                            textAlign: 'left',
+                            width: '35vw',
+                            paddingTop: '70px',
+                        }}
+                    >
+                        <CopyBlock
+                            text={policy ? policy : ''}
+                            theme={dracula}
+                            codeBlock
+                        />
+                        <br></br>
+                        {policy ? (
+                            <Button
+                                variant="contained"
+                                onClick={downloadTxtFile}
+                                size="large"
+                                style={{
+                                    width: '35vw',
+                                    background: '#d6bd54',
+                                    color: 'black',
+                                }}
+                            >
+                                Download Policy
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                disabled
+                                size="large"
+                                style={{ width: '35vw' }}
+                            >
+                                Download Policy
+                            </Button>
+                        )}
+                    </div>
+                    {/* <CheckBoxList input={input} setInput={setInput} /> */}
                 </div>
-                {/* <CheckBoxList input={input} setInput={setInput} /> */}
             </div>
         </div>
     );
