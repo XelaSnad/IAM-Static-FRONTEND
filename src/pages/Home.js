@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
 import CheckBoxList from '../components/CheckBoxList';
 import logo from '../assets/Transparent.png';
+import Repo from '../components/Repo';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Button from '@mui/material/Button';
@@ -38,6 +39,7 @@ export default function Home() {
                 </p>
             </div>
 
+
             <div>
                 {/* {checked} */}
                 <div className="Upload">
@@ -50,6 +52,7 @@ export default function Home() {
                         setInput={setInput}
                         checked={checked}
                         setChecked={setChecked}
+
                     />
                     {/* <div>hello</div> */}
                     <div
