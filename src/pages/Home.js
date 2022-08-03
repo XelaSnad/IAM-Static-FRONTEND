@@ -1,14 +1,30 @@
 // import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
+import CheckBoxList from '../components/CheckBoxList';
 import logo from '../assets/Transparent.png';
 import Repo from '../components/Repo';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
-import { minWidth } from '@mui/system';
+import Button from '@mui/material/Button';
+
+// import { minWidth } from '@mui/system';
 
 export default function Home() {
+    // const
+    const [checked, setChecked] = React.useState([]);
+    const [input, setInput] = useState({});
     const [policy, setPolicy] = useState('');
+    const downloadTxtFile = () => {
+        const element = document.createElement('a');
+        const file = new Blob([policy], {
+            type: 'text/plain',
+        });
+        element.href = URL.createObjectURL(file);
+        element.download = 'policy.txt';
+        document.body.appendChild(element);
+        element.click();
+    };
     return (
         <div className="Home">
             <img src={logo} />
@@ -22,36 +38,63 @@ export default function Home() {
                     <br></br>
                 </p>
             </div>
-            {/* <div style={{ display: 'flex' }}> */}
-            <div className="Upload">
-                <Repo
-                    policy={policy}
-                    setPolicy={setPolicy}
-                />
-                <UploadFile
-                    orientation="Left"
-                    title="Generate Policy"
-                    policy={policy}
-                    setPolicy={setPolicy}
-                />
-                {/* </div> */}
-                <div
-                    class="ignore-css"
-                    style={{
-                        textAlign: 'left',
-                        minWidth: '50vw',
-                        paddingTop: '70px',
-                    }}
-                >
-                    <CopyBlock
-                        text={policy ? policy : ''}
-                        // showLineNumbers={showLineNumbers}
-                        theme={dracula}
-                        codeBlock
-                        // style={{ textAlign: 'left' }}
+
+
+            <div>
+                {/* {checked} */}
+                <div className="Upload">
+                    <UploadFile
+                        orientation="Left"
+                        title="Generate Policy"
+                        policy={policy}
+                        setPolicy={setPolicy}
+                        input={input}
+                        setInput={setInput}
+                        checked={checked}
+                        setChecked={setChecked}
+
                     />
+                    {/* <div>hello</div> */}
+                    <div
+                        class="ignore-css"
+                        style={{
+                            textAlign: 'left',
+                            width: '35vw',
+                            paddingTop: '70px',
+                        }}
+                    >
+                        <CopyBlock
+                            text={policy ? policy : ''}
+                            theme={dracula}
+                            codeBlock
+                        />
+                        <br></br>
+                        {policy ? (
+                            <Button
+                                variant="contained"
+                                onClick={downloadTxtFile}
+                                size="large"
+                                style={{
+                                    width: '35vw',
+                                    background: '#d6bd54',
+                                    color: 'black',
+                                }}
+                            >
+                                Download Policy
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                disabled
+                                size="large"
+                                style={{ width: '35vw' }}
+                            >
+                                Download Policy
+                            </Button>
+                        )}
+                    </div>
+                    {/* <CheckBoxList input={input} setInput={setInput} /> */}
                 </div>
-                {/* <UploadFile orientation="Right" title="Current Policy" /> */}
             </div>
         </div>
     );
