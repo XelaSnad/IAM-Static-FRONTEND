@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
 import logo from '../assets/Transparent.png';
+import Repo from '../components/Repo';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import { minWidth } from '@mui/system';
@@ -23,6 +24,10 @@ export default function Home() {
             </div>
             {/* <div style={{ display: 'flex' }}> */}
             <div className="Upload">
+                <Repo
+                    policy={policy}
+                    setPolicy={setPolicy}
+                />
                 <UploadFile
                     orientation="Left"
                     title="Generate Policy"
