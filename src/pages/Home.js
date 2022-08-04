@@ -45,7 +45,7 @@ export default function Home() {
                 <div className="Upload">
                     <UploadFile
                         orientation="Left"
-                        title="Generate Policy"
+                        title="Generate Policy via Upload"
                         policy={policy}
                         setPolicy={setPolicy}
                         input={input}
@@ -91,7 +91,9 @@ export default function Home() {
                             >
                                 Download Policy
                             </Button>
+            
                         )}
+                        
                     </div>
                     {/* <CheckBoxList input={input} setInput={setInput} /> */}
                 </div>
