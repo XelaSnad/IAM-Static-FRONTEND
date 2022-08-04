@@ -1,7 +1,11 @@
 import { useState } from "react";
 import React from 'react'
+import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
 
-function Repo({policy, setPolicy}) {
+
+function Repo({title, policy, setPolicy}) {
+    
     const [message, setMessage] = useState('');
 
     const handleChange = event => {
@@ -42,8 +46,33 @@ function Repo({policy, setPolicy}) {
   
     return (
     <div>
-        <input placeholder="Enter a Github Repositry" type="text" onChange={handleChange} value={message}/>
-        <button onClick={handleSubmit}>Submit Big Boy</button>
+        <h2 style={{color: "white"}}>{title}</h2>
+        
+        <TextField
+            variant="outlined"
+            placeholder="Enter a Github Repositry"
+            type="text" 
+            onChange={handleChange} 
+            value={message} 
+            className="Left" 
+            style={{
+                        width: '35vw',
+                        background: 'white'
+                    }}
+        />
+        <br/>
+        <Button
+                    variant="contained"
+                    onClick={handleSubmit}
+                    size="large"
+                    style={{
+                        width: '35vw',
+                        background: '#d6bd54',
+                        color: 'black',
+                    }}
+                >
+                    Generate Policy
+                </Button>
     </div>
   )
 }
