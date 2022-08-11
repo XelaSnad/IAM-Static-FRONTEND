@@ -40,7 +40,7 @@ Project developed by Frank Su, Eddy Wong, Zachary Ngooi and Alex Sanders for [CO
 
 ## Getting Started
 
-### Deploying React App
+### Deploying React App (Hosting Locally)
 
 1. Clone the repo
     ```sh
