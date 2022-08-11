@@ -1,23 +1,20 @@
 // import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
-import CheckBoxList from '../components/CheckBoxList';
+// import CheckBoxList from '../components/CheckBoxList';
 import logo from '../assets/Transparent.png';
-import Repo from '../components/Repo';
+// import Repo from '../components/Repo';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Button from '@mui/material/Button';
 
-
 export default function Home() {
-
-    // State variables to store functionality 
+    // State variables to store functionality
     const [checked, setChecked] = React.useState([]);
     const [input, setInput] = useState({});
     const [policy, setPolicy] = useState('');
 
-
-    // download file functionality 
+    // download file functionality
     const downloadTxtFile = () => {
         const element = document.createElement('a');
         const file = new Blob([policy], {
@@ -42,7 +39,6 @@ export default function Home() {
                 </p>
             </div>
 
-
             <div>
                 <div className="Upload">
                     <UploadFile
@@ -54,7 +50,6 @@ export default function Home() {
                         setInput={setInput}
                         checked={checked}
                         setChecked={setChecked}
-
                     />
                     <div
                         class="ignore-css"
@@ -92,9 +87,7 @@ export default function Home() {
                             >
                                 Download Policy
                             </Button>
-            
                         )}
-                        
                     </div>
                 </div>
             </div>
