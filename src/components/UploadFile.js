@@ -18,7 +18,7 @@ export default function UploadFile({
     checked,
     setChecked,
 }) {
-    // let [policy, setPolicy] = useState('');
+    // deconstruct properties from dropzone
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             'text/python': ['.py'],
@@ -27,20 +27,17 @@ export default function UploadFile({
             handleOnDrop(e);
         },
     });
+
+    // function generates policy on the frontend
     const generatePolicy = () => {
-        // let filtered = Object.values(input).reduce()
         let filteredFiles = Object.keys(input)
             .filter((key) => checked.includes(key))
             .reduce((obj, key) => {
                 obj[key] = input[key];
                 return obj;
             }, {});
-        // console.log(filteredFiles);
 
-        let stuff = {
-            ting: Object.values(filteredFiles),
-        };
-        // console.log(stuff);
+        // makes request headers and body
         let requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'multipart/form-data' },
@@ -48,11 +45,14 @@ export default function UploadFile({
             'Access-Control-Allow-Methods': '*',
             'Access-Control-Allow-Headers': '*',
 
-            body: JSON.stringify(stuff),
+            body: JSON.stringify({
+                ting: Object.values(filteredFiles),
+            }),
         };
+        // sets the url for the lambda function
+        // THIS NEEDS TO BE CHANGED FOR EVERY DEPLOYMENT OF THE LAMBDA FUNCTION
         let uri =
             'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
-
         fetch(uri, requestOptions)
             .then((e) => {
                 console.log(e);
@@ -67,6 +67,7 @@ export default function UploadFile({
             });
     };
 
+    // Takes in the files and returns a dictionary of name of file and filecontent
     const handleOnDrop = async (files) => {
         let content = Array.from(files).map((file) => {
             let reader = new FileReader();
@@ -85,33 +86,6 @@ export default function UploadFile({
             });
         });
         let res = await Promise.all(content);
-        // let stuff = {
-        //     ting: res,
-        // };
-        // let requestOptions = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'multipart/form-data' },
-        //     'Access-Control-Allow-Origin': '*',
-        //     'Access-Control-Allow-Methods': '*',
-        //     'Access-Control-Allow-Headers': '*',
-
-        //     body: JSON.stringify(stuff),
-        // };
-        // let uri =
-        //     'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
-
-        // fetch(uri, requestOptions)
-        //     .then((e) => {
-        //         console.log(e);
-        //         return e.json();
-        //     })
-        //     .then((e) => {
-        //         console.log(e);
-        //         setPolicy(JSON.stringify(JSON.parse(e.body), null, 4));
-        //     })
-        //     .catch((e) => {
-        //         console.log(e);
-        //     });
     };
     return (
         <div className={orientation}>
@@ -157,15 +131,6 @@ export default function UploadFile({
                     Generate Policy
                 </Button>
             )}
-            {/* <Button
-                variant="contained"
-                onClick={generatePolicy}
-                size="large"
-                style={{ width: '35vw', background: '#d6bd54', color: 'black' }}
-            >
-                Generate Policy
-            </Button> */}
-            {/* {checked.length == 0 ? <div>fk you </div> : <div></div>} */}
         </div>
     );
 }

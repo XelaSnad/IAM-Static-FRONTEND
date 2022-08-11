@@ -7,13 +7,16 @@ import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Button from '@mui/material/Button';
 
-// import { minWidth } from '@mui/system';
 
 export default function Home() {
-    // const
+
+    // State variables to store functionality 
     const [checked, setChecked] = React.useState([]);
     const [input, setInput] = useState({});
     const [policy, setPolicy] = useState('');
+
+
+    // download file functionality 
     const downloadTxtFile = () => {
         const element = document.createElement('a');
         const file = new Blob([policy], {
@@ -39,7 +42,6 @@ export default function Home() {
             </div>
 
             <div>
-                {/* {checked} */}
                 <div className="Upload">
                     <UploadFile
                         orientation="Left"
@@ -51,7 +53,6 @@ export default function Home() {
                         checked={checked}
                         setChecked={setChecked}
                     />
-                    {/* <div>hello</div> */}
                     <div
                         class="ignore-css"
                         style={{
@@ -90,7 +91,6 @@ export default function Home() {
                             </Button>
                         )}
                     </div>
-                    {/* <CheckBoxList input={input} setInput={setInput} /> */}
                 </div>
             </div>
         </div>
