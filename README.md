@@ -65,6 +65,7 @@ Project developed by Frank Su, Eddy Wong, Zachary Ngooi and Alex Sanders for [CO
 
 -   [] Implement diff checker
 -   [] Make website deployable via github pages
+-   [] Lambda and API gateway deployment pipeline
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
