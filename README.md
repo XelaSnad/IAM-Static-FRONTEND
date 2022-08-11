@@ -51,34 +51,38 @@ Project developed by Frank Su, Eddy Wong, Zachary Ngooi and Alex Sanders for [CO
     $ npm install
     ```
 3. Deploy lambda function with the files in extra/lambda
-4. Deploy an api gateway for the function with the files in extra/apigateway
-5. Change the lambda function link in .env to the link you have generated from steps 3 and 4
-6. Start Application Locally
+4. Add the lambaLayer with the files in extra/lambdaLayer
+5. Deploy an api gateway for the function with the files in extra/apigateway
+6. Change the lambda function link in .env to the link you have generated from steps 3 and 4
+7. Start Application Locally
     ```sh
     $ npm start
     ```
      <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Deploying React App via Actions to a Static S3 Bucket
+
 1. Clone and Fork The Repo i.e. on Github when you are cloning select 'For My Own Purposes ... ME/IAM-Static-Frontend
 2. Create an S3 Bucket that is a static website.
 3. Create a role that has get and put rights upon the S3 Bucket.
-4. Upload the secrets to github so we can fulfill the yaml file in 
-   ```
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-   ```
-   With AWS_REGION being the region your bucket is hosted
+4. Upload the secrets to github so we can fulfill the yaml file in
+    ```
+           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+           aws-region: ${{ secrets.AWS_REGION }}
+    ```
+    With AWS_REGION being the region your bucket is hosted
 5. In the Yaml file replace 'static-iam-frontend' with the name of your bucket
-  ```
-  run: aws s3 sync ./build/ s3://static-iam-frontend --delete
-  ``` 
+
+```
+run: aws s3 sync ./build/ s3://static-iam-frontend --delete
+```
+
 6. Now make sure your github actions executes so that your website is built, any time you push to main you will update you 'website'
 7. Deploy lambda function with the files in extra/lambda
 8. Deploy an api gateway for the function with the files in extra/apigateway
 9. Change the lambda function link in .env to the link you have generated from steps 7 and 8
-<!-- ROADMAP -->
+ <!-- ROADMAP -->
 
 ## Roadmap
 
