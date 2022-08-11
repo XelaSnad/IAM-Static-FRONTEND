@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import UploadFile from '../components/UploadFile';
 import CheckBoxList from '../components/CheckBoxList';
 import logo from '../assets/Transparent.png';
+import Repo from '../components/Repo';
 import '../css/Home.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import Button from '@mui/material/Button';
@@ -41,17 +42,19 @@ export default function Home() {
                 </p>
             </div>
 
+
             <div>
                 <div className="Upload">
                     <UploadFile
                         orientation="Left"
-                        title="Generate Policy"
+                        title="Generate Policy via Upload"
                         policy={policy}
                         setPolicy={setPolicy}
                         input={input}
                         setInput={setInput}
                         checked={checked}
                         setChecked={setChecked}
+
                     />
                     <div
                         class="ignore-css"
@@ -89,7 +92,9 @@ export default function Home() {
                             >
                                 Download Policy
                             </Button>
+            
                         )}
+                        
                     </div>
                 </div>
             </div>

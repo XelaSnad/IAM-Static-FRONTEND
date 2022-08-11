@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useDropzone } from 'react-dropzone';
 import InputInstructions from '../components/InputInstructions';
-// import Fetch from 'fetch';
-// import { CopyBlock, dracula } from 'react-code-blocks';
 import Button from '@mui/material/Button';
 import CheckBoxList from '../components/CheckBoxList';
+import Repo from './Repo';
 
 export default function UploadFile({
     input,
@@ -89,8 +88,6 @@ export default function UploadFile({
     };
     return (
         <div className={orientation}>
-            {/* {JSON.stringify(input)} */}
-            {/* {checked} */}
             <h2>{title}</h2>
             <section className="Drop">
                 <section className="container">
@@ -131,6 +128,14 @@ export default function UploadFile({
                     Generate Policy
                 </Button>
             )}
+
+            <h1 style={{ color: 'white' }}>OR</h1>
+
+            <Repo
+                policy={policy}
+                setPolicy={setPolicy}
+                title="Generate Policy via Repo"
+            />
         </div>
     );
 }
