@@ -1,29 +1,27 @@
-import { useState } from "react";
-import React from 'react'
+import { useState } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
-import TextField from "@mui/material/TextField";
+import TextField from '@mui/material/TextField';
 
-
-function Repo({title, policy, setPolicy}) {
-    
+function Repo({ title, policy, setPolicy }) {
     const [message, setMessage] = useState('');
 
-    const handleChange = event => {
+    const handleChange = (event) => {
         setMessage(event.target.value);
-    }
+    };
 
-    const handleSubmit = event => {
+    const handleSubmit = (event) => {
         let requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'text' },
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': '*',
             'Access-Control-Allow-Headers': '*',
-            body: JSON.stringify(message)
+            body: JSON.stringify(message),
         };
         let uri =
             'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
-    
+
         fetch(uri, requestOptions)
             .then((e) => {
                 console.log(e);
@@ -36,32 +34,29 @@ function Repo({title, policy, setPolicy}) {
             .catch((e) => {
                 console.log(e);
             });
-            
 
-            console.log(event)
-    }
-    
+        console.log(event);
+    };
 
-   
-  
     return (
-    <div>
-        <h2 style={{color: "white"}}>{title}</h2>
-        
-        <TextField
-            variant="outlined"
-            placeholder="Enter a Github Repositry"
-            type="text" 
-            onChange={handleChange} 
-            value={message} 
-            className="Left" 
-            style={{
-                        width: '35vw',
-                        background: 'white'
-                    }}
-        />
-        <br/>
-        <Button
+        <div>
+            <h2 style={{ color: 'white' }}>{title}</h2>
+            <TextField
+                variant="outlined"
+                placeholder="Enter a Github Repositry"
+                type="text"
+                onChange={handleChange}
+                value={message}
+                className="Left"
+                style={{
+                    width: '35vw',
+                    background: 'white',
+                }}
+            />
+            <br />
+            <br />
+            {message ? (
+                <Button
                     variant="contained"
                     onClick={handleSubmit}
                     size="large"
@@ -73,8 +68,18 @@ function Repo({title, policy, setPolicy}) {
                 >
                     Generate Policy
                 </Button>
-    </div>
-  )
+            ) : (
+                <Button
+                    variant="contained"
+                    disabled
+                    size="large"
+                    style={{ width: '35vw' }}
+                >
+                    Generate Policy
+                </Button>
+            )}
+        </div>
+    );
 }
 
-export default Repo
+export default Repo;
