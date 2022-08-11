@@ -19,10 +19,8 @@ function Repo({ title, policy, setPolicy }) {
             'Access-Control-Allow-Headers': '*',
             body: JSON.stringify(message),
         };
-        let uri =
-            'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
 
-        fetch(uri, requestOptions)
+        fetch(process.env.REACT_APP_LAMBDA_LINK, requestOptions)
             .then((e) => {
                 console.log(e);
                 return e.json();

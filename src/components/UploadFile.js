@@ -6,7 +6,7 @@ import InputInstructions from '../components/InputInstructions';
 import Button from '@mui/material/Button';
 import CheckBoxList from '../components/CheckBoxList';
 import Repo from './Repo';
-
+// import lambdaFunction from 'process.env.REACT_APP_LAMBDA_LINK';
 export default function UploadFile({
     input,
     setInput,
@@ -49,10 +49,7 @@ export default function UploadFile({
             }),
         };
         // sets the url for the lambda function
-        // THIS NEEDS TO BE CHANGED FOR EVERY DEPLOYMENT OF THE LAMBDA FUNCTION
-        let uri =
-            'https://fz41s9yjre.execute-api.ap-southeast-2.amazonaws.com/test/triggerscriptanalyzer';
-        fetch(uri, requestOptions)
+        fetch(process.env.REACT_APP_LAMBDA_LINK, requestOptions)
             .then((e) => {
                 console.log(e);
                 return e.json();

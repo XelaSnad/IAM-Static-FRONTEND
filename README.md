@@ -52,16 +52,14 @@ Project developed by Frank Su, Eddy Wong, Zachary Ngooi and Alex Sanders for [CO
     ```
 3. Deploy lambda function with the files in extra/lambda
 4. Deploy an api gateway for the function with the files in extra/apigateway
-5. a. Start Application Locally
+5. Change the lambda function link in .env to the link you have generated from steps 3 and 4
+6. Start Application Locally
     ```sh
     $ npm start
     ```
      <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Deploying Lambda Function
-
-1.
-1. <!-- ROADMAP -->
+<!-- ROADMAP -->
 
 ## Roadmap
 
