@@ -70,12 +70,11 @@ Project developed by Frank Su, Eddy Wong, Zachary Ngooi and Alex Sanders for [CO
           aws-region: ${{ secrets.AWS_REGION }}
    ```
    With AWS_REGION being the region your bucket is hosted
-5. Update the YAML file as follows
+5. In the Yaml file replace 'static-iam-frontend' with the name of your bucket
   ```
   run: aws s3 sync ./build/ s3://static-iam-frontend --delete
-  ```
-  replace 'static-iam-frontend' with the name of your s3 bucket 
-6. Now make sure your github actions executes and any time you push you will update you 'website'.
+  ``` 
+6. Now make sure your github actions executes so that your website is built, any time you push to main you will update you 'website'
 7. Deploy lambda function with the files in extra/lambda
 8. Deploy an api gateway for the function with the files in extra/apigateway
 9. Change the lambda function link in .env to the link you have generated from steps 7 and 8
