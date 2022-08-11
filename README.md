@@ -40,24 +40,28 @@ Project developed by Frank Su, Eddy Wong, Zachary Ngooi and Alex Sanders for [CO
 
 ## Getting Started
 
-### Prerequisites
-
-### Installation
+### Deploying React App
 
 1. Clone the repo
     ```sh
-    $ git clone https://github.com/eddyxwong/COMP9447
+    $ git clone https://github.com/XelaSnad/IAM-Static-FRONTEND
     ```
 2. Install dependencies
     ```sh
-    $ pip install -r requirements.txt
+    $ npm install
     ```
-3. Install any other dependencies. Refer to prerequisites.
- <p align="right">(<a href="#top">back to top</a>)</p>
+3. Deploy lambda function with the files in extra/lambda
+4. Deploy an api gateway for the function with the files in extra/apigateway
+5. a. Start Application Locally
+    ```sh
+    $ npm start
+    ```
+     <p align="right">(<a href="#top">back to top</a>)</p>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+### Deploying Lambda Function
 
-<!-- ROADMAP -->
+1.
+1. <!-- ROADMAP -->
 
 ## Roadmap
 

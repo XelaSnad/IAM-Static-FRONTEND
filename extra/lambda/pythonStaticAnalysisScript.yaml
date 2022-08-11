@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+    pythonStaticAnalysisScriopt:
+        Type: 'AWS::Serverless::Function'
+        Properties:
+            Handler: lambda_function.lambda_handler
+            Runtime: python3.9
+            CodeUri: .
+            Description: ''
+            MemorySize: 128
+            Timeout: 60
+            Role: >-
+                arn:aws:iam::221094580673:role/service-role/pythonStaticAnalysisScriopt-role-yy3lb4n5
+            Layers:
+                - >-
+                    arn:aws:lambda:ap-southeast-2:221094580673:layer:git-static-analysis-dependency:3
+                - 'arn:aws:lambda:ap-southeast-2:221094580673:layer:Le-Git:2'
